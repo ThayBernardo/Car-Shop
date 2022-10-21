@@ -4,7 +4,7 @@ import { Request, Response } from 'express';
 import Car from '../../../models/Cars.model';
 import CarsServices from '../../../services/Cars.services';
 import CarsController from '../../../controllers/Cars.controller';
-import { carMock } from '../../mocks/Cars.mock';
+import { carMock, carMockWithId } from '../../mocks/Cars.mock';
 
 describe('Car Controller', () => {
   const carModel = new Car()
@@ -30,6 +30,16 @@ describe('Car Controller', () => {
       req.body = carMock;
       await carController.create(req, res);
       expect((res.status as sinon.SinonStub).calledWith(201)).to.be.true;
+      expect((res.json as sinon.SinonStub).calledWith(carMock)).to.be.true;
+    });
+  });
+
+  describe('ReadOne Car', () => {
+    it('Success', async () => {
+      req.params = { id: carMockWithId._id };
+      await carController.readOne(req, res);
+
+      expect((res.status as sinon.SinonStub).calledWith(200)).to.be.true;
       expect((res.json as sinon.SinonStub).calledWith(carMock)).to.be.true;
     });
   });
