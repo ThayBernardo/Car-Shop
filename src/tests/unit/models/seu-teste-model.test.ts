@@ -38,4 +38,11 @@ describe('Car Model', () => {
 			}
 		});
 	});
+
+	describe('searching all cars', () => {
+		it('successfully found', async () => {
+			const carFound = await carModel.read();
+			expect(carFound).to.be.deep.equal([carMockWithId]);
+		});
+	});
 });

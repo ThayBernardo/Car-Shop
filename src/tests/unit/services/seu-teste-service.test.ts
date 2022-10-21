@@ -15,6 +15,7 @@ describe('Car Service', () => {
 		sinon.stub(carModel, 'readOne')
 			.onCall(0).resolves(carMockWithId) 
 			.onCall(1).resolves(null); 
+		sinon.stub(carModel, 'read').resolves([carMockWithId]);
 	})
 	after(() => {
 		sinon.restore()
@@ -55,6 +56,14 @@ describe('Car Service', () => {
 
 			expect(error, 'error should be defined').not.to.be.undefined;
 			expect(error.message).to.be.deep.equal(ErrorTypes.EntityNotFound);
+		});
+	});
+
+	describe('Read all Cars', () => {
+		it('Success', async () => {
+			const allCars = await carService.read();
+
+			expect(allCars).to.be.deep.equal([carMockWithId]);
 		});
 	});
 });
