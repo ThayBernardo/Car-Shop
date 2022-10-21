@@ -16,6 +16,7 @@ describe('Car Controller', () => {
 
   before(() => {
     sinon.stub(carService, 'create').resolves(carMock);
+    sinon.stub(carService, 'readOne').resolves(carMock);
 
     res.status = sinon.stub().returns(res);
     res.json = sinon.stub().returns(res);
