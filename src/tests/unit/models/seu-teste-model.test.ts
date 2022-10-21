@@ -1,22 +1,24 @@
-// template para criação dos testes de cobertura da camada de model
+import { expect } from 'chai';
+import sinon from 'sinon';
+import { Model } from 'mongoose';
+import Car from '../../../models/Cars.model';
+import { carMock, carMockWithId } from '../../mocks/Cars.mock';
 
+describe('Car Model', () => {
+  const carModel = new Car();
 
-// import * as sinon from 'sinon';
-// import chai from 'chai';
-// const { expect } = chai;
+	before(() => {
+		sinon.stub(Model, 'create').resolves(carMockWithId);
+	});
 
-// describe('Sua descrição', () => {
+	after(() => {
+		sinon.restore();
+	});
 
-//   before(async () => {
-//     sinon
-//       .stub()
-//       .resolves();
-//   });
-
-//   after(()=>{
-//     sinon.restore();
-//   })
-
-//   it('', async () => {});
-
-// });
+    describe('creating a frame', () => {
+		it('successfully created', async () => {
+			const newFrame = await carModel.create(carMock);
+			expect(newFrame).to.be.deep.equal(carMockWithId);
+		});
+	});
+});
