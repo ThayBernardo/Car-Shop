@@ -15,10 +15,10 @@ describe('Car Model', () => {
 		sinon.restore();
 	});
 
-    describe('creating a frame', () => {
+    describe('creating a car', () => {
 		it('successfully created', async () => {
-			const newFrame = await carModel.create(carMock);
-			expect(newFrame).to.be.deep.equal(carMockWithId);
+			const newCar = await carModel.create(carMock);
+			expect(newCar).to.be.deep.equal(carMockWithId);
 		});
 	});
 });
