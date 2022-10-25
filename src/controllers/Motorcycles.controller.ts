@@ -20,4 +20,12 @@ export default class MotorcyclesController {
     const all = await this._service.read();
     return res.status(200).json(all);
   }
+
+  public async readOne(
+    req: Request,
+    res: Response<IMotorcycle>,
+  ) {
+    const one = await this._service.readOne(req.params.id);
+    return res.status(200).json(one);
+  }
 }
