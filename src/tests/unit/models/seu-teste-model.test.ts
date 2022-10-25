@@ -13,6 +13,7 @@ describe('Car Model', () => {
 		sinon.stub(Model, 'findOne').resolves(carMockWithId);
 		sinon.stub(Model, 'find').resolves([carMockWithId]);
 		sinon.stub(Model, 'findByIdAndUpdate').resolves(carMockWithId);
+    sinon.stub(Model, 'findByIdAndDelete').resolves(carMockWithId);
 	});
 
 	after(() => {
