@@ -3,7 +3,7 @@ import * as sinon from 'sinon';
 import { ZodError } from 'zod';
 import { ErrorTypes } from '../../../errors/catolog';
 import Car from '../../../models/Cars.model';
-import CarsServices from '../../../services/Cars.services';
+import CarsServices from '../../../services/Cars.service';
 import { carMock, carMockPartial, carMockWithId, carMockWrong } from '../../mocks/Cars.mock';
 
 describe('Car Service', () => {
